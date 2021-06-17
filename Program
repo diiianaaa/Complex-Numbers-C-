@@ -1,0 +1,86 @@
+using System;
+
+namespace NumberFormat
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Complex val1 = new Complex(7, 1);
+            Complex val2 = new Complex(2, 6);
+
+            double val3 = 3.155;
+        
+            Console.WriteLine("First: {0}", val1);
+            Console.WriteLine("Second: {0}", val2);
+
+
+            //the difference
+            Console.WriteLine("Difference: {0} ", val1 - val2);
+            Console.WriteLine("Add: {0} ", val1 + val2);
+
+            //multiplication
+            Console.WriteLine("Scalar is:", val3);
+            Console.WriteLine("Multiplication with scalar: {0} ", val1 * val3);
+            Console.WriteLine("Multiplication : {0} ", val1 * val2);
+
+     
+
+    }
+    }
+}
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace NumberFormat
+{
+    class Complex
+    {
+        private double real;
+        private double imag;
+
+        public Complex(double real = 0.0, double imag = 0.0)
+        {
+            this.real = real;
+            this.imag = imag;
+        }
+
+        // Complex conjugat
+        public static Complex operator !(Complex c)
+        {
+            return new Complex(c.real, -c.imag);
+        }
+
+        public static Complex operator +(Complex one, Complex two)
+        {
+            return new Complex(one.real + two.real, one.imag + two.imag);
+        }
+
+        public static Complex operator -(Complex one, Complex two)
+        {
+            return new Complex(one.real - two.real, one.imag - two.imag);
+        }
+
+        public static Complex operator *(Complex one, Complex two)
+        {
+            return new Complex(one.real * two.real - one.imag * two.imag, one.real * two.imag + one.imag * two.real);
+        }
+
+        // Inmultire cu numar real
+        public static Complex operator *(Complex one, double two)
+        {
+            return new Complex(one.real * two, one.imag * two);
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0}+{1}i", this.real, this.imag);
+        }
+
+       
+    }
+}
